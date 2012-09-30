@@ -1,4 +1,10 @@
 %html
-  %head>
-  %body>
-    = yield
+  %head
+    %link(rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css")
+    %link(rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/boostrap-responsive.min.css")
+  %body
+    .container
+      .span3
+        "SIDEBAR"
+      .span4
+        = yield
