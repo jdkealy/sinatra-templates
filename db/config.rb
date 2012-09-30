@@ -15,11 +15,4 @@ migration "create users table" do
   end
 end
 
-migration "everything's better with bling" do
-  database.alter_table :foos do
-    drop_column :baz
-    add_column :bling, :float
-  end
-end
-
 Dir.glob(File.expand_path(File.dirname(__FILE__)) + '/../app/models/*.{rb,class}') {|file| require file}
