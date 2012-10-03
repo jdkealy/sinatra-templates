@@ -5,12 +5,15 @@ set :database, 'sqlite://foo.db'
 
 require './db/migrations.rb'
 
-migration "create users table" do
+migration "create users" do
   database.create_table :users do
     primary_key :id
     text        :name
+    text        :email
     text        :username
     text        :password
+    text        :password_hash
+    text        :password_salt
     index       :username, :unique => true
   end
 end
