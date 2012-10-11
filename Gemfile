@@ -6,3 +6,5 @@ gem 'sqlite3'
 gem 'postgres'
 gem 'haml'
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'json'
+gem 'sinatra-backbone'
