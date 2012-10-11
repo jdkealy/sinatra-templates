@@ -1,0 +1,9 @@
+%h3
+  Authorize
+.authorization_container
+
+:javascript
+  var auth_model  = new App.AuthModel();
+  var auth        = new App.Auth({model:auth_model});
+  auth_model.fetch();
+  $('.authorization_container').html(auth.el);

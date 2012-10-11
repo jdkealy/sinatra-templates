@@ -1,8 +1,13 @@
 require 'sinatra'
 require "sinatra/reloader" if development?
 require "haml"
+require 'sinatra/backbone'
 
 class MyApp < Sinatra::Base
+
+  def redirect_url
+    '/'
+  end
 
   configure do
     enable :sessions
@@ -10,40 +15,17 @@ class MyApp < Sinatra::Base
     set :root, File.dirname(__FILE__)
     set :views, settings.root + '/app/views'
     register Sinatra::Reloader
+    require "./app/rest/auth"
+    require "./app/rest/users"
+    require "./app/cms/system_pages"
+    require "./app/rest/pages"
+    register Sinatra::JstPages
+    also_reload "./app/models/*"
+    also_reload "./app/rest/auth.rb"
+    serve_jst '/jst.js'
   end
 
   get '/' do
     haml :index
   end
-
-  #get '/foo' do
-  #  session[:message] = 'Hello World!'
-  #  redirect '/bar'
-  #end
-
-  #get '/bar' do
-  #  raise session[:message].inspect   # => 'Hello World!'
-  #end
-
-  get     '/users' do
-
-  end
-
-  get     '/users/:id' do |id|
-    @user = User.find(id)
-    raise @user.inspect
-  end
-
-  post    '/users' do
-
-  end
-
-  put     '/users/:id' do |id|
-
-  end
-
-  delete  '/users/:id' do |id|
-
-  end
-
 end

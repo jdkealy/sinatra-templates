@@ -5,11 +5,15 @@
     %script{:type => "text/javascript", :src  => "/vendor/jquery-1.8.2.min.js/"}
     %script{:type => "text/javascript", :src  => "/vendor/underscore-min.js"}
     %script{:type => "text/javascript", :src  => "/vendor/backbone-min.js"}
+    %script{:type => "text/javascript", :src  => "/jst.js"}
+    %script{:type => "text/javascript", :src  => "/app/app.js"}
+    %script{:type => "text/javascript", :src  => "/app/auth.js"}
   %body
     .container-fluid
-      .span3
-        sidebar-left
-      .span6
+      .row-fluid.header
+        .span6.branding
+        .span6.user_roles
+      .span9
         = yield
       .span3
         sidebar-right

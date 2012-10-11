@@ -1,6 +1,12 @@
-Sequel::Model.plugin :validation_helpers
 class User < Sequel::Model
+  one_to_many :roles
+
   require 'bcrypt'
+
+  def self.possible_roles
+    [:admin, :user]
+  end
+
   def before_save
     if password
       self.password_salt = BCrypt::Engine.generate_salt
@@ -28,5 +34,9 @@ class User < Sequel::Model
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
+
+  def in_role?(role)
+    self.roles.map{|r| r.role}.include? role.to_s
   end
 end
