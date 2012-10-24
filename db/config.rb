@@ -4,6 +4,7 @@ require 'sinatra/sequel'
 set :database, 'sqlite://foo.db'
 
 Sequel::Model.plugin :validation_helpers
+Sequel::Model.plugin :subclasses
 
 require './db/migrations.rb'
 
