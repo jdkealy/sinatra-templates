@@ -25,6 +25,33 @@ class MyApp < Sinatra::Base
     serve_jst '/jst.js'
   end
 
+  Sequel::Model.subclasses.each do |c|
+    get "/restapi/#{c}" do
+      c.all.map{|a| a.values}.to_json
+    end
+
+    post "/restapi/#{c}" do
+      user = new c(params["#{c}"])
+    end
+
+    put "/restapi/#{c}/:id" do |id|
+      user = c.find(:id=>id)
+      user.update(params["#{c}"])
+      user.save
+    end
+
+    get "/restapi/#{c}/:id" do |id|
+      user = c.find(:id=>id)
+      user.values.to_json
+    end
+
+    delete "/restapi/#{c}/:id" do |id|
+      user = c.find(:id=>id)
+      user.destroy
+    end
+  end
+ 
+
   get '/' do
     haml :index
   end
