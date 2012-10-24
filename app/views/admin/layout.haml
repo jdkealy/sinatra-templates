@@ -1,0 +1,19 @@
+%html
+  %head
+    %link(rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css")
+    %link(rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap-responsive.min.css")
+    %script{:type => "text/javascript", :src  => "/vendor/jquery-1.8.2.min.js/"}
+    %script{:type => "text/javascript", :src  => "/vendor/underscore-min.js"}
+    %script{:type => "text/javascript", :src  => "/vendor/backbone-min.js"}
+    %script{:type => "text/javascript", :src  => "/jst.js"}
+    %script{:type => "text/javascript", :src  => "/app/app.js"}
+    %script{:type => "text/javascript", :src  => "/app/auth.js"}
+    %script{:type => "text/javascript", :src  => "/app/admin.js"}
+  %body
+    .container-fluid
+      .row-fluid.header
+        .span6.branding
+        .span6.user_roles
+      .span9
+        = yield
+      .span3

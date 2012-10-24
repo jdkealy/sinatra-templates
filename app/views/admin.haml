@@ -1,0 +1,8 @@
+#admin_navigation
+#admin_resource
+
+:javascript
+  App.rest_sources = new App.RestSources();
+  var navigation   = new App.Admin.Navigation({collection:App.rest_sources});
+  App.rest_sources.fetch();
+  $('#admin_navigation').html(navigation.el);

@@ -15,7 +15,6 @@ class MyApp < Sinatra::Base
     end
   end
 
-
   post '/authorizations' do
     u = User.authenticate(params['username'], params['password'])
     if u
@@ -71,6 +70,5 @@ class MyApp < Sinatra::Base
     u = User.find(:id=>params['id'])
     u.add_role(:role=>params['role'])
   end
-
 
 end

@@ -1,4 +1,7 @@
 class User < Sequel::Model
+  def self.crud_attributes
+    ['email', 'name','username']
+  end
   one_to_many :roles
 
   require 'bcrypt'
@@ -16,7 +19,7 @@ class User < Sequel::Model
   end
 
   def validate
-    validates_presence  [:password,:email]
+    validates_presence  [:password,:email] if new?
     validates_unique    [:email]
   end
 
